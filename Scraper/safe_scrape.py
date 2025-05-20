@@ -34,5 +34,6 @@ if __name__ == "__main__":
         
         df=pd.DataFrame(links)
         df=df['url'].apply(lambda x:"https://"+str(x))
+        
         print(links)
         df.to_csv('../Data/safe_link.csv', mode='a', index=False, header=False)
