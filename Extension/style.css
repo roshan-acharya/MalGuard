@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, sans-serif;
+  width: 250px;
+  padding: 10px;
+  text-align: center;
+}
+
+.safe {
+  color: green;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.phishing {
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.error {
+  color: orange;
+  font-weight: bold;
+}
+
+.warn {
+  color: blue;
+}
+
+.info {
+  padding-top: 10px;
+}
