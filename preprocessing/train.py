@@ -8,7 +8,7 @@ from sklearn.cluster import DBSCAN
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
-from data_clean import url_to_df
+from preprocessing.data_clean import url_to_df
 
 from sklearn.model_selection import cross_val_score
 vectorizer = TfidfVectorizer(analyzer='char', ngram_range=(3,5))
@@ -18,7 +18,7 @@ def train_test_split_data(df, test_size=0.2, random_state=42):
     return X_train, X_test
 
 
-def train_model(df):
+def train_model(df,path):
     svm=OneClassSVM(nu=0.1, kernel='rbf', gamma='scale')
     X_train, X_test = train_test_split_data(df)
 
@@ -32,15 +32,11 @@ def train_model(df):
 
     pipeline.fit(X_train)
 
-    url='https://gvedshtyhn-3.pages.dev/gp/customer-reviews/R117SU381UABSD?ASIN=1433688670'
-    url_df = url_to_df(url)
-    prediction = pipeline.predict(url_df)
-    print(f'Prediction for {url}: {prediction[0]}')  # Output: 1 for normal, -1 for anomaly
-
-if __name__ == "__main__":
-    # Example usage
-    df = pd.read_csv('../Data/safe_links.csv')
-    train_model(df)
+    #save model
+    import pickle
+    with open(path, 'wb') as f:
+        pickle.dump(pipeline, f)
+    print("Model saved to ../Models/one_class_svm_model.pkl")
 
 
 

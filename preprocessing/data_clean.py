@@ -3,7 +3,6 @@ import numpy as np
 import re
 from urllib.parse import * 
 from datetime import datetime
-from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 def clean_safe_data(file_path):
@@ -32,8 +31,8 @@ def clean_safe_data(file_path):
     return df
 
 
-def save_data(df):
-    df.to_csv('..\Data\safe_links.csv', index=False)
+def save_data(df,file_path):
+    df.to_csv(file_path, index=False)
 
 def url_to_df(url):
         parse_url = urlparse(url)
