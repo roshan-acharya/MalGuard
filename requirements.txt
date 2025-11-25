@@ -1,3 +1,7 @@
 playwright
 urllib3
 whois
+scikit-learn
+pandas
+numpy
+fastapi
