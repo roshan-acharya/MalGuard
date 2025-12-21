@@ -4,6 +4,6 @@ from .train import train_model
 __all__ = [
     'clean_safe_data',
     'save_data',
-    'train_model',
-    'url_to_df'
+    'url_to_df',
+    'train_model'
 ]

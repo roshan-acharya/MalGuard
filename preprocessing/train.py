@@ -20,13 +20,11 @@ def train_test_split_data(df, test_size=0.2, random_state=42):
 
 def train_model(df,path):
     svm=OneClassSVM(nu=0.1, kernel='rbf', gamma='scale')
-    X_train, X_test = train_test_split_data(df)
+    X_train, X_test = train_test_split_data(df, test_size=0.2, random_state=42)
 
-    preprocessor = ColumnTransformer(
-        transformers=[('url', vectorizer, 'url')],
-    )
+
     pipeline = Pipeline(steps=[
-        ('preprocessor', preprocessor),
+       
         ('classifier', svm)
     ])
 
