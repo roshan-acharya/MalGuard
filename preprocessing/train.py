@@ -1,17 +1,24 @@
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split, KFold
-from sklearn.svm import OneClassSVM
 #isolation forest
 from sklearn.ensemble import IsolationForest
-from sklearn.cluster import DBSCAN
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from preprocessing.data_clean import url_to_df
+from sklearn.model_selection import train_test_split
 
 from sklearn.model_selection import cross_val_score
-vectorizer = TfidfVectorizer(analyzer='char', ngram_range=(3,5))
+
+columns=[ 'domain_length', 'count_dots', 'count_dashes', 'count_at_symbol',
+       'count_digits', 'subdomain_count', 'query_length', 'num_params', 'num_slashes',
+       'entropy']
+
+process=ColumnTransformer(
+    transformers=[
+        ('scaler', StandardScaler(), columns)
+    ], remainder='passthrough'
+)
 
 def train_test_split_data(df, test_size=0.2, random_state=42):
     X_train, X_test = train_test_split(df, test_size=test_size, random_state=random_state)
@@ -19,13 +26,24 @@ def train_test_split_data(df, test_size=0.2, random_state=42):
 
 
 def train_model(df,path):
-    svm=OneClassSVM(nu=0.1, kernel='rbf', gamma='scale')
+    forest=IsolationForest(
+    n_estimators=200,        # 100 – 500
+    max_samples=256,         # 128, 256, or "auto"
+    contamination=0.03,      # 0.01 – 0.1
+    max_features=0.9,        # 0.7 – 1.0
+    bootstrap=False,         # usually False
+    random_state=42,
+    n_jobs=-1
+)
     X_train, X_test = train_test_split_data(df, test_size=0.2, random_state=42)
+
+
 
 
     pipeline = Pipeline(steps=[
        
-        ('classifier', svm)
+        ('preprocessing', process),
+        ('classifier', forest)
     ])
 
     pipeline.fit(X_train)

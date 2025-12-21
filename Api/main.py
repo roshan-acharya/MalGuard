@@ -1,10 +1,17 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pipeline.predict import predict_url
+import pandas as pd
+from urllib.parse import * 
 
 app = Flask(__name__)
 CORS(app)
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+safe=pd.read_csv(BASE_DIR / 'Data/safe_links.csv')
 
 @app.route("/")
 def home():
@@ -19,14 +26,27 @@ def predict():
         return jsonify({"error": "Missing ?url= parameter"}), 400
 
     try:
-        prediction = predict_url(url, './models/one_class_svm_model.pkl')
-        result = "Phishing" if prediction == -1 else "Legitimate"
-
-        return jsonify({
-            "url": url,
-            "prediction": result,
-            "raw_value": int(prediction)
-        })
+        parse_url = urlparse(url)
+        domain = parse_url.hostname
+        scheme= parse_url.scheme
+        combine= scheme + "://" + domain
+        print("Checking URL:",combine)
+        print(safe['url'].values)
+        if combine in safe['url'].values:
+            return jsonify({
+                "url": url,
+                "prediction": "Legitimate",
+                "raw_value": 1
+            })
+        else:
+            prediction = predict_url(url, './models/one_class_svm_model.pkl')
+            result = "Phishing" if prediction == -1 else "Legitimate"
+            print(prediction)
+            return jsonify({
+                "url": url,
+                "prediction": result,
+                "raw_value": int(prediction)
+            })
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500

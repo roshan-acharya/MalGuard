@@ -56,8 +56,8 @@ def url_to_df(url):
         path=parse_url.path
         suspicious_words = ['login', 'signin', 'verify', 'update', 'banking', 'account', 'secure', 'ebayisapi', 'webscr', 'paypal','esewa','account']
         data = {
-            'suspicious': 1 if any(word in url for word in suspicious_words) else 0,
-            'length_domain': len(domain),
+            'Suspicious_word_count': 1 if any(word in url for word in suspicious_words) else 0,
+            'domain_length': len(domain),
             'count_dots': url.count('.'),
             'count_dashes': url.count('-'),
             'https': 1 if 'https' in scheme else 0,
