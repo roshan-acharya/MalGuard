@@ -21,28 +21,31 @@ def home():
 @app.route("/predict", methods=["GET"])
 def predict():
     url = request.args.get("url")  #Extrct URL from query parameter
+    print("Predicting for URL:", url)
+    parse_url = urlparse(url)
+    domain = parse_url.hostname
+    scheme= parse_url.scheme
+    domain_norm = domain.lower().replace("www.", "")
+    combine= scheme + "://" + domain_norm
+    print("Domain extracted:", combine)
+      
 
     if not url:
         return jsonify({"error": "Missing ?url= parameter"}), 400
 
     try:
-        print("Predicting for URL:", url)
-        parse_url = urlparse(url)
-        domain = parse_url.hostname
-        scheme= parse_url.scheme
-        combine= scheme + "://" + domain
         if combine in safe['url'].values:
             return jsonify({
-                "url": url,
+                "url": domain,
                 "prediction": "Legitimate",
                 "raw_value": 1
             })
         else:
-            prediction = predict_url(url, BASE_DIR / 'models/one_class_svm_model.pkl')
-            result = "Phishing" if prediction == -1 else "Legitimate"
+            prediction = predict_url(url, BASE_DIR / 'models/model.pkl')
+            result = "Malicious" if prediction == -1 else "Legitimate"
             print(prediction)
             return jsonify({
-                "url": url,
+                "url": domain,
                 "prediction": result,
                 "raw_value": int(prediction)
             })

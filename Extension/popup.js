@@ -1,22 +1,39 @@
 chrome.storage.local.get("phishguard_result", (data) => {
-  const box = document.getElementById("result");
+  const statusCard = document.getElementById("status-card");
+  const statusText = document.getElementById("status-text");
 
+  // No data yet
   if (!data.phishguard_result) {
-    box.innerHTML = "<span class='warn'>No data yet</span>";
+    statusCard.className = "status checking";
+    statusText.textContent = "No scan data available";
     return;
   }
 
+  // Error case
   if (data.phishguard_result.error) {
-    box.innerHTML = `<span class="error">${data.phishguard_result.error}</span>`;
+    statusCard.className = "status malicious";
+    statusText.textContent = `Error: ${data.phishguard_result.error}`;
     return;
   }
 
-  const prediction = data.phishguard_result.prediction;
-  const url = data.phishguard_result.url;
+  const { prediction, url } = data.phishguard_result;
 
+  // Legitimate
   if (prediction === "Legitimate") {
-    box.innerHTML = `<span class="safe">SAFE ✔</span><br><small>${url}</small>`;
-  } else {
-    box.innerHTML = `<span class="phishing">PHISHING ✖</span><br><small>${url}</small>`;
+    statusCard.className = "status safe";
+    statusText.innerHTML = `
+      ✅ This site is SAFE
+      <br>
+      <small>${url}</small>
+    `;
+  }
+  // Phishing
+  else {
+    statusCard.className = "status malicious";
+    statusText.innerHTML = `
+      ⚠️ Malicious URL
+      <br>
+      <small>${url}</small>
+    `;
   }
 });

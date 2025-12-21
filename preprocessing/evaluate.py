@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 def evaluatemodel():
     test=pd.read_csv(BASE_DIR / 'Data/test.csv')
-    model_path = BASE_DIR / 'models/one_class_svm_model.pkl'
+    model_path = BASE_DIR / 'models/model.pkl'
     
     #I have benigh and phishing labels in test data
     X_test = test['url'].values

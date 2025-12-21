@@ -1,31 +1,64 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  width: 250px;
-  padding: 10px;
+  width: 280px;
+  border-radius: 12px;
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+.container {
+  padding: 16px;
   text-align: center;
 }
 
-.safe {
-  color: green;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.logo {
   font-size: 20px;
-  font-weight: bold;
 }
 
-.phishing {
-  color: red;
-  font-size: 20px;
-  font-weight: bold;
+h1 {
+  font-size: 18px;
+  font-weight: 600;
 }
 
-.error {
-  color: orange;
-  font-weight: bold;
+.status {
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 12px;
 }
 
-.warn {
-  color: blue;
+/* States */
+.status.checking {
+  background: #1e293b;
+  color: #cbd5f5;
 }
 
-.info {
-  padding-top: 10px;
+.status.safe {
+  background: #064e3b;
+  color: #a7f3d0;
+}
+
+.status.malicious {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+.footer {
+  font-size: 11px;
+  color: #94a3b8;
 }

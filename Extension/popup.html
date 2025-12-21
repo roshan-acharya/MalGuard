@@ -1,14 +1,24 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>PhishGuard</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <h2>PhishGuard</h2>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>PhishGuard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <span class="logo">🛡️</span>
+        <h1>PhishGuard</h1>
+      </div>
 
-  <div id="result" class="info">Checking URL...</div>
+      <div id="status-card" class="status checking">
+        <p id="status-text">Checking current URL…</p>
+      </div>
 
-  <script src="popup.js"></script>
-</body>
+      <p class="footer">AI-powered phishing detection</p>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
 </html>

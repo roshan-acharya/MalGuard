@@ -11,7 +11,7 @@ def main():
 
     df = pd.read_csv(BASE_DIR / 'Data/clean_safe_links.csv')
     print("Training Model")
-    train_model(df, BASE_DIR / 'models/one_class_svm_model.pkl')
+    train_model(df, BASE_DIR / 'models/model.pkl')
     print("Training Completed")
 
 
