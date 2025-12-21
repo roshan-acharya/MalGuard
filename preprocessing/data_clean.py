@@ -71,5 +71,4 @@ def url_to_df(url):
             'entropy': -sum([ (url.count(c)/len(url)) * np.log2(url.count(c)/len(url)) for c in set(url)]),
             'has_tld_in_path': 1 if re.search(r'\.(com|org|net|info|biz|co|us|uk|io|gov)(/|$)', path) else 0
         }
-        print(data)
         return pd.DataFrame([data])

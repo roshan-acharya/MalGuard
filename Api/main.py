@@ -26,12 +26,11 @@ def predict():
         return jsonify({"error": "Missing ?url= parameter"}), 400
 
     try:
+        print("Predicting for URL:", url)
         parse_url = urlparse(url)
         domain = parse_url.hostname
         scheme= parse_url.scheme
         combine= scheme + "://" + domain
-        print("Checking URL:",combine)
-        print(safe['url'].values)
         if combine in safe['url'].values:
             return jsonify({
                 "url": url,
@@ -39,7 +38,7 @@ def predict():
                 "raw_value": 1
             })
         else:
-            prediction = predict_url(url, './models/one_class_svm_model.pkl')
+            prediction = predict_url(url, BASE_DIR / 'models/one_class_svm_model.pkl')
             result = "Phishing" if prediction == -1 else "Legitimate"
             print(prediction)
             return jsonify({
