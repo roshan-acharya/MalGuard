@@ -4,4 +4,4 @@ whois
 scikit-learn
 pandas
 numpy
-fastapi
+flask
