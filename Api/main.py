@@ -27,7 +27,6 @@ def predict():
     scheme= parse_url.scheme
     domain_norm = domain.lower().replace("www.", "")
     combine= scheme + "://" + domain_norm
-    print("Domain extracted:", combine)
       
 
     if not url:

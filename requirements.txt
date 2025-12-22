@@ -4,4 +4,6 @@ whois
 scikit-learn
 pandas
 numpy
-fastapi
+flask
+flask-cors
+matplotlib
