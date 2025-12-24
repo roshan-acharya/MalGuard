@@ -4,12 +4,18 @@
   "version": "1.0",
   "description": "Detect phishing websites using AI backend.",
   "permissions": ["tabs", "activeTab", "storage"],
-  "host_permissions": ["http://127.0.0.1:8000/*"],
+  "host_permissions": ["https://malguard.onrender.com/*"],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
     "default_title": "PhishGuard",
     "default_popup": "popup.html"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
 }
