@@ -6,7 +6,4 @@ pandas
 numpy
 flask
 flask-cors
-<<<<<<< HEAD
 matplotlib
-=======
->>>>>>> 1cc4a30cb9df45338304728d2e40647383172580
