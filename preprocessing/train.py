@@ -27,7 +27,7 @@ def train_model(df,path):
     forest=IsolationForest(
     n_estimators=200,       
     max_samples=256,         
-    contamination=0.03,      
+    contamination=0.05,      
     max_features=0.9,       
     bootstrap=False,         
     random_state=42,

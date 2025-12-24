@@ -16,11 +16,8 @@ def evaluatemodel():
     y_true = test['type'].apply(lambda x: 1 if x == 'safe' else -1).values
     y_pred = []
     for url in X_test:
-        if not url.startswith("http"):
-            url = "https://" + url
         prediction = predict_url(url, model_path)
         y_pred.append(prediction)
-
     print("Confusion Matrix:")
     print(confusion_matrix(y_true, y_pred))
     print("\nClassification Report:")

@@ -2,15 +2,21 @@
 
 A complete **Anamoly Detection** project using Hybrid approach **Rule Based + ML** to classify url as **Safe** or **Malicious**. The project includes **data preprocessing**, **Feature Engineering**, **training ML model**, **API development** and **Chrome Extension**.
 
+It automatically flags malicious URLs and shows safe URLs with a ✅, providing users with a safer browsing experience.
+
 ---
 
 ## 📘 1. Project Overview
 
-- Classifies URLs as Safe or Malicious.
-- Preprocessing includes: Extracting various features from url.
-- Train model - Isolation Forest.
-- Provides visualizations: Confusion Matrix
-- Deployable via **API and Extension** for interactive prediction.
+- Real-time phishing detection in Chrome
+
+- Legitimate websites are marked safe
+
+- Suspicious/phishing URLs are flagged automatically
+
+- Hybrid model: Isolation Forest + Whitelist
+
+- Confusion matrix & evaluation metrics included
 
 ---
 
@@ -30,14 +36,33 @@ A complete **Anamoly Detection** project using Hybrid approach **Rule Based + ML
 
 ---
 
+## 📦 Extension
+
+Install **MalGuard** directly :
+
+[**Install MalGuard**](https://chrome.google.com/webstore/detail/malguard-your-extension-id)
+
+> After installation, MalGuard automatically detects phishing URLs and marks safe websites with a ✅.
+
+---
+
 ## 📈 3. Evaluation Metrics & Graphs
 
 Metrics calculated for test data:
 
-- **Accuracy : 0.90**
-- **Precision : 0.90**
-- **Recall : 0.99**
-- **F1 Score : 0.94**
+| Metric        | Score |
+| ------------- | ----- |
+| **Accuracy**  | 0.90  |
+| **Precision** | 0.90  |
+| **Recall**    | 0.99  |
+| **F1 Score**  | 0.94  |
+
+**Class-wise performane**
+
+| Class          | Precision | Recall | F1-score | Support |
+| -------------- | --------- | ------ | -------- | ------- |
+| -1 (Phishing)  | 1.00      | 0.66   | 0.79     | 126     |
+| 1 (Legitimate) | 0.93      | 1.00   | 0.96     | 569     |
 
 **Visualizations Saved in `reports/plots/`:**
 
@@ -52,7 +77,7 @@ Metrics calculated for test data:
 
 ```bash
 # Clone the repo
-git clone https://github.com/roshan-acharya/SpamClassifier
+git clone https://github.com/roshan-acharya/MalGuard.git
 cd MalGuard
 
 # Create virtual environment (optional)
