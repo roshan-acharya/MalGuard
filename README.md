@@ -34,15 +34,46 @@ It automatically flags malicious URLs and shows safe URLs with a ✅, providing 
 
 ---
 
+<div align="center">
+  <img src="reports/workflow.png" alt="Confusion Matrix" width="500"/>
+</div>
+
+---
+
 ---
 
 ## 📦 Extension
 
-Install **MalGuard** directly :
+## Install MalGuard (Developer Mode)
 
-[**Install MalGuard**](https://chrome.google.com/webstore/detail/malguard-your-extension-id)
+1. Download the extension from GitHub
+2. Extract the folder
+3. Open `chrome://extensions/`
+4. Enable **Developer mode**
+5. Click **Load unpacked** and select the MalGuard folder
 
-> After installation, MalGuard automatically detects phishing URLs and marks safe websites with a ✅.
+MalGuard will start protecting you immediately.
+
+## 🔌 API Integration
+
+MalGuard communicates with a backend API for real-time predictions.
+
+### Endpoint
+
+```bash
+GET https://malguard.onrender.com/predict?url=
+<encoded_url>
+```
+
+### Sample Response
+
+```json
+{
+  "prediction": "Malicious",
+  "raw_value": -1,
+  "url": "url"
+}
+```
 
 ---
 
