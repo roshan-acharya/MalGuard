@@ -1,64 +1,93 @@
+/* Global Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Inter, system-ui, -apple-system, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
 }
 
+/* Body */
 body {
-  width: 280px;
-  border-radius: 12px;
+  width: 300px;
+  border-radius: 16px;
   background: #0f172a;
   color: #e5e7eb;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
 }
 
+/* Container */
 .container {
-  padding: 16px;
+  padding: 20px;
   text-align: center;
 }
 
+/* Header */
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 14px;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
 .logo {
-  font-size: 20px;
+  font-size: 24px;
 }
 
 h1 {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
+  color: #f8fafc;
 }
 
+/* Status Card */
 .status {
-  padding: 14px;
-  border-radius: 10px;
+  padding: 16px;
+  border-radius: 12px;
   font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 12px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
-/* States */
+/* Status States */
 .status.checking {
-  background: #1e293b;
+  background: linear-gradient(135deg, #1e293b, #334155);
   color: #cbd5f5;
 }
 
 .status.safe {
-  background: #064e3b;
+  background: linear-gradient(135deg, #064e3b, #065f46);
   color: #a7f3d0;
 }
 
 .status.malicious {
-  background: #7f1d1d;
+  background: linear-gradient(135deg, #7f1d1d, #991b1b);
   color: #fecaca;
+}
+
+/* Description Section */
+.description {
+  background: #1e293b;
+  color: #cbd5f5;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  margin-bottom: 14px;
+  line-height: 1.4;
+  text-align: center;
+  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.05);
 }
 
 .footer {
   font-size: 11px;
   color: #94a3b8;
+  margin-top: 6px;
+}
+
+.status:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
